@@ -8,7 +8,8 @@
   "scripts": {
     "start": "concurrently -p \" {name} \" -n \"CLIENT,SERVER\" -c \"bgGreen,bgBlue\" \"yarn run client\" \"yarn run server\"",
     "client": "cd client && yarn start",
-    "server": "babel-node server/index.js"
+    "server": "babel-node server/index.js",
+    "lint": "eslint server"
   },
   "dependencies": {
     "express": "^4.14.0",
@@ -17,8 +18,12 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "babel-eslint": "^7.1.1",
     "babel-preset-env": "^1.0.2",
     "concurrently": "^3.1.0",
+    "eslint": "^3.12.0",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "jest": "^17.0.3"
   },
   "babel": {
@@ -32,5 +37,32 @@
         }
       ]
     ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "plugins": ["import"],
+    "settings": {
+      "import/ignore": [
+        "node_modules"
+      ],
+      "import/extensions": [".js"],
+      "import/resolver": {
+        "node": {
+          "extensions": [".js", ".json"]
+        }
+      }
+    },
+    "rules": {
+      "import/default": "warn",
+      "import/export": "warn",
+      "import/named": "warn",
+      "import/namespace": "warn",
+      "import/no-amd": "warn",
+      "import/no-duplicates": "warn",
+      "import/no-extraneous-dependencies": "warn",
+      "import/no-named-as-default": "warn",
+      "import/no-named-as-default-member": "warn",
+      "import/no-unresolved": "warn"
+    }
   }
 }
