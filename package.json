@@ -11,7 +11,9 @@
     "server": "babel-node server/index.js"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "sequelize": "^3.27.0",
+    "sqlite3": "^3.1.8"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
