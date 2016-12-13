@@ -1,11 +1,21 @@
 import express from 'express';
+import expressValidator from 'express-validator';
+import router from './routes';
 
-const app = express();
 const port = process.env.PORT || 3001;
 
-app.get('/', (req, res) => {
+const app = express();
+app.use(expressValidator());
+app.use(router);
+app.use((req, res) => {
+  res.status(404).json({
+    message: 'no such route',
+  });
+});
+app.use((error, req, res, next) => {
   res.json({
-    message: 'Hello world!',
+    message: error.message,
+    stack: error.stack.split('\n'),
   });
 });
 

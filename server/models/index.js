@@ -1,15 +1,18 @@
-import path from 'path';
+import dotenv from 'dotenv';
 import Sequelize from 'sequelize';
 import user from './user';
 import post from './post';
 import comment from './comment';
 import reaction from './reaction';
 
-const dbName = process.env.DB_NAME || 'db';
+dotenv.config();
 
-const sequelize = new Sequelize(dbName, null, null, {
-  dialect: 'sqlite',
-  storage: path.resolve(__dirname, '../../database.sqlite'),
+const dbName = process.env.DB_NAME || 'db';
+const dbUsername = process.env.DB_USERNAME || '';
+const dbPassword = process.env.DB_PASSWORD || '';
+
+const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
+  dialect: 'mysql',
   logging: false,
 });
 
@@ -17,6 +20,9 @@ export const User = sequelize.import('user', user);
 export const Post = sequelize.import('post', post);
 export const Comment = sequelize.import('comment', comment);
 export const Reaction = sequelize.import('reaction', reaction);
+
+Post.hasMany(Comment);
+Post.hasMany(Reaction);
 
 Comment.belongsTo(User);
 Comment.belongsTo(Post);
