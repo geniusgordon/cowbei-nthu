@@ -17,7 +17,8 @@ router.use('/', wrap(async (req, res) => {
   const { offset = 0, limit = 20 } = req.query;
   const types = Reaction.attributes.type.values;
   const posts = await Post.findAll({
-    attributes: ['id', 'message'],
+    attributes: ['id', 'message', 'cowbei_id', 'created_time', 'submitted_time'],
+    order: [['created_time', 'DESC']],
     offset,
     limit,
     raw: true,
