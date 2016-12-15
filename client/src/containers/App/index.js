@@ -11,12 +11,15 @@ const RedirectP = () => <Redirect to="/p" />;
 const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
-const StyledAppBar = styled(AppBar)`
-  position: fixed !important;
+const AppBarWrapper = styled.div`
+  height: 64px;
 `;
 const BodyWrapper = styled.div`
-  padding-top: 64px;
+  flex: 1;
+  overflow: hidden;
 `;
 
 class App extends Component {
@@ -24,10 +27,12 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <MainWrapper>
-          <StyledAppBar
-            title="靠北清大"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-          />
+          <AppBarWrapper>
+            <AppBar
+              title="靠北清大"
+              iconClassNameRight="muidocs-icon-navigation-expand-more"
+            />
+          </AppBarWrapper>
           <Router>
             <BodyWrapper>
               <Match exactly pattern="/" component={RedirectP} />
