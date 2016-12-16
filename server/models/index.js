@@ -7,12 +7,16 @@ import reaction from './reaction';
 
 dotenv.config();
 
+const host = process.env.DB_HOST || 'localhost';
+const port = process.env.DB_PORT || 3306;
 const dbName = process.env.DB_NAME || 'db';
 const dbUsername = process.env.DB_USERNAME || '';
 const dbPassword = process.env.DB_PASSWORD || '';
 
 const sequelize = new Sequelize(dbName, dbUsername, dbPassword, {
   dialect: 'mysql',
+  host,
+  port,
   logging: false,
 });
 

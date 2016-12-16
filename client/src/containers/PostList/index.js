@@ -28,14 +28,17 @@ class PostList extends Component {
   componentWillUnmount() {
     this.scrollWrapper.removeEventListener('scroll', this.handleScroll);
   }
-  fetchPosts = () => {
+  fetchPosts = async () => {
     this.setState({ loading: true });
-    fetch('/api/posts').then(res => res.json()).then(posts => this.setState({ posts, loading: false }));
+    const offset = this.state.posts.length;
+    const res = await fetch(`/api/posts?offset=${offset}`);
+    const posts = await res.json();
+    this.setState({ posts: this.state.posts.concat(posts), loading: false });
   };
   handleScroll = throttle(e => {
     const { offsetHeight, scrollTop, scrollHeight } = e.target;
     if (offsetHeight + scrollTop >= scrollHeight - 10) {
-      console.log('bottom');
+      this.fetchPosts();
     }
   }, 300);
   scrollRef = ref => {
