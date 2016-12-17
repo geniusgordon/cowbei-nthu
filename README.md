@@ -2,7 +2,7 @@
 
 ## Setup project
 
-```
+```sh
 git clone git@github.com:geniusgordon/cowbei-nthu.git
 cd cowbei-nthu
 yarn # install server dependencies
@@ -15,7 +15,7 @@ yarn # install client dependencies
 
 export environment variable
 
-```
+```sh
 export DB_NAME=cowbei_nthu
 export DB_USERNAME=cowbei-nthu
 export DB_PASSWORD=xxx
@@ -33,12 +33,12 @@ DB_HOST=localhost
 
 ## Run in develop mode
 
-```
+```sh
 yarn run start # start server & client together
 ```
 ## Run in production mode
 
-```
+```sh
 cd client
 yarn run build
 
