@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently -p \" {name} \" -n \"CLIENT,SERVER\" -c \"bgGreen,bgBlue\" \"yarn run client\" \"yarn run server\"",
-    "client": "cd client && yarn start",
+    "client": "cd client && yarn run start",
     "server": "babel-node server/index.js",
     "lint": "eslint server"
   },
